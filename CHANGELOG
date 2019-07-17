@@ -1,0 +1,47 @@
+version v1.1
+
+Finte Hotspot management System
+Edit
+Pendahuluan
+Aplikasi finte hotspot managemen sistem yang mempuyai fungsi-fungsi dan fitur utama sebagai berikut
+
+Edit
+FITUR-FITUR UTAMA
+1.manajemen multi hotspot
+    - Manajemen multi hotspot yg berbeda lokasi.
+2. user profile dan behavior
+    - Mencatat profile penguna secara detail dan mendalam (Contoh : hoby,tanggal lahir,jenis kelamin dll,Makanan yang disukai,musik yg disukai,jenis kelamin,dll)
+3. manajemen paket & bandwith
+    - paket internet berdasakan volume base,time base
+    - free paket internet
+    - reward point paket internet
+4. tracking user browsing
+    - mencatat aktifitas browsing user (aktifitas user dalam mengunakan internet) di website yg di tentukan
+    - Operating system,jenis device,lokasi user
+5. system pembelian pembayaran paket
+    - Virtual akun
+    - Kartukredit
+    - bank transfer
+
+BACKEND
+DASHBOARD
+    1. TOP 10 WEBSITE BROWSING
+    2. PERSENTASI & JUMLAH PERANGKAT (ACTIVE DEVICE) (ANDROID,IPHONE,PC/LAPTOP,MAC)
+    3. PERSENTASI OPERATING SYSTEM (WINDOWS,ANDROID,IOS,OSX)
+    4  TOP 10 LOKASI PALING BANYAK USER AKTIF.
+    5. TOTAL PENJUALAN HARI INI
+    6. TOTAL USER ONLINE
+    7. TOP KEYWORD GOOGLE SEARCH
+
+SETTING
+    Semua konfigurasi dasar Aplikasi finte
+    1. upload logo
+    2. nama aplikasi
+    3. upload icon
+    4. payment setting
+    5. facebook pixel code/number)
+    6. google analitycs (code/number)
+    7. durasi iklan (waktu durasi iklan akan di tampilkan)
+    8. SMS GATEAWAY akun
+        - username
+        - password
