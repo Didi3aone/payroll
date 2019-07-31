@@ -1,11 +1,11 @@
-jQuery(document).ready(function($) {
+$(document).ready(function() {
     validate();	
 });
 // function validate form
 function validate() {
     var form 	= $("#loginform"); 
     var submit 	= $("#loginform .btn-submit");
-
+    // alert();
     $(form).validate({
         errorClass      : 'invalid',
         errorElement    : 'em',
@@ -21,10 +21,10 @@ function validate() {
             $(element).addClass('valid');
         },
 
-        debug: true,
+        debug: false,
 
         //rules form validation
-        rules:
+        rules: 
         {
             username:
             {
@@ -48,11 +48,11 @@ function validate() {
                 beforeSend: function()
                 {
                     $(submit).attr('disabled', true);
-                    $('.preloader').show();
+                    // $('.preloader').show();
                 },
                 success: function(data)
                 {
-                    $('.preloader').show();
+                    $('.preloader').hide();
                     //validate if error
                     if(data['is_error'] == true) {
                         // stopLoading();
@@ -60,27 +60,19 @@ function validate() {
                         $(submit).attr('disabled', false);
                     } 
                     else {
-                        console.log(data['title_msg']);
-                        console.log(data['success_msg']);
+                        // console.log(data['title_msg']);
+                        // console.log(data['success_msg']);
+                        setTimeout(function() {
+                            swal({
+                                title: "Wow!",
+                                text: data['error_msg'],
+                                type: "success"
+                            }, function() {
+                                window.location = data['redirect'];
+                            });
+                        }, 1000);
                         //success
-                        swal({
-                            title: data['title_msg'],
-                            text: '',
-                            type: "success",
-                            showCancelButton: false,
-                            showConfirmButton: true
-                        }).then(
-                            function () {
-                                location.href = data['redirect'];
-                            },
-                            // handling the promise rejection
-                            function (dismiss) {
-                                if (dismiss === 'timer') {
-                                //console.log('I was closed by the timer')
-                                }
-                            }
-                        )
-                    }                   
+                    }                    
                 },
                 error: function() {
                     $(submit).attr('disabled', false);

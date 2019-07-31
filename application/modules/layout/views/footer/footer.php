@@ -64,7 +64,7 @@
             <!-- footer -->
             <!-- ============================================================== -->
             <footer class="footer">
-                © 2017 Material Pro Admin by wrappixel.com
+                © <?= date('Y'); ?>
             </footer>
             <!-- ============================================================== -->
             <!-- End footer -->
@@ -84,6 +84,10 @@
     <!-- Bootstrap tether Core JavaScript -->
     <script src="<?php echo base_url(). ASSETS_PLUGINS; ?>bootstrap/js/popper.min.js"></script>
     <script src="<?php echo base_url(). ASSETS_PLUGINS; ?>bootstrap/js/bootstrap.min.js"></script>
+    <script src="<?php echo base_url(). ASSETS_JS; ?>jquery.form.min.js"></script>
+    <script src="<?php echo base_url(). ASSETS_JS; ?>jquery.validate.js"></script>
+    <!-- This is data table -->
+    <script src="<?php echo base_url(). ASSETS_PLUGINS; ?>datatables/jquery.dataTables.min.js"></script>
     <!-- slimscrollbar scrollbar JavaScript -->
     <script src="<?php echo base_url(). ASSETS_JS; ?>jquery.slimscroll.js"></script>
     <!--Wave Effects -->
@@ -97,25 +101,32 @@
     <script src="<?php echo base_url(). ASSETS_PLUGINS; ?>sticky-kit-master/dist/sticky-kit.min.js"></script>
     <script src="<?php echo base_url(). ASSETS_PLUGINS; ?>sparkline/jquery.sparkline.min.js"></script>
     <script src="<?php echo base_url(). ASSETS_PLUGINS; ?>sparkline/jquery.sparkline.min.js"></script>
+    <script src="<?php echo base_url(). ASSETS_PLUGINS; ?>select2/dist/js/select2.full.min.js"></script>
     <!--Custom JavaScript -->
     <script src="<?php echo base_url(). ASSETS_JS; ?>custom.min.js"></script>
     <!-- ============================================================== -->
     <!-- This page plugins -->
     <!-- ============================================================== -->
-    <!-- chartist chart -->
-    <script src="<?php echo base_url(). ASSETS_PLUGINS; ?>chartist-js/dist/chartist.min.js"></script>
-    <script src="<?php echo base_url(). ASSETS_PLUGINS; ?>chartist-plugin-tooltip-master/dist/chartist-plugin-tooltip.min.js"></script>
-    <!--c3 JavaScript -->
-    <script src="<?php echo base_url(). ASSETS_PLUGINS; ?>d3/d3.min.js"></script>
-    <script src="<?php echo base_url(). ASSETS_PLUGINS; ?>c3-master/c3.min.js"></script>
-    <!-- Vector map JavaScript -->
-    <script src="<?php echo base_url(). ASSETS_PLUGINS; ?>vectormap/jquery-jvectormap-2.0.2.min.js"></script>
-    <script src="<?php echo base_url(). ASSETS_PLUGINS; ?>vectormap/jquery-jvectormap-us-aea-en.js"></script>
-    <script src="<?php echo base_url(). ASSETS_JS; ?>dashboard2.js"></script>
-    <!-- ============================================================== -->
+    <script src="<?php echo base_url(). ASSETS_PLUGINS; ?>sweetalert/sweetalert.min.js"></script>
+    <script src="<?php echo base_url(). ASSETS_PLUGINS; ?>dropify/dist/js/dropify.min.js"></script>
     <!-- Style switcher -->
     <!-- ============================================================== -->
     <script src="<?php echo base_url(). ASSETS_PLUGINS; ?>styleswitcher/jQuery.style.switcher.js"></script>
+    <script>
+        var BASE_URL = "<?php echo base_url(); ?>";
+    </script>
+
+    <?php 
+        if(isset($plugin_js)) {
+            if(is_array($plugin_js)) {
+                foreach($plugin_js as $val) {
+                    echo "<script src=".base_url($val)."></script>";
+                }
+            } else {
+                echo "<script src=".base_url($plugin_js)."></script>";
+            }
+        }
+    ?>
 </body>
 
 </html>

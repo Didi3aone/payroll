@@ -68,7 +68,7 @@ class Auth extends MX_Controller {
 		$message['error_msg'] = "";
 
 		$post_data = $this->input->post();
-		print_array($post_data);die;
+		// print_r($post_data);die;
 		
 		$user   = (isset($post_data['username'])) ? (string)sql_injection($post_data['username'],"string") : "";
 		$pass   = (isset($post_data['password'])) ? sql_injection($post_data['password'],"string") : "";
@@ -76,13 +76,14 @@ class Auth extends MX_Controller {
 
 		$check_login = $this->Global_model->set_model('tbl_users','tu','id')->mode(array(
 			"type" 			=> SINGLE_ROW,
-			"select"		=> "*",
+			"select"		=> "tur.id as id_role, tur.name as role_name, tu.*",
 			"joined"		=> array(
 				"tbl_users_role tur" => array('tur.id' => 'tu.role_id')
 			),
 			"conditions" 	=> array(
 				"username" => $user
-			)
+			),
+			// 'debug_query' => true
 		));
 
 		if(!empty($check_login) && password_verify($pass, $check_login['password'])) {
@@ -105,6 +106,13 @@ class Auth extends MX_Controller {
 					)
 				));
 	
+				$this->insert_other_info($data['id'], $data['username']);
+				$this->user_activity($data['username'], "LOGIN", ACTIVITY_LOGIN);
+	
+				$message['is_error']  = false;
+				$message['error_msg'] = "sukses";
+				$message['redirect']  = "admin?login(TRUE)&".URL_HACKED."&".URL_ENCODE."";
+			} else {
 				$this->insert_other_info($data['id'], $data['username']);
 				$this->user_activity($data['username'], "LOGIN", ACTIVITY_LOGIN);
 	
@@ -182,7 +190,10 @@ class Auth extends MX_Controller {
 			'IS_LOGIN' 			=> TRUE,
 			'id' 	   			=> $data['id'],
 			'username_login' 	=> $data['username'],
-			'ip_address'		=> $data['ip_address']
+			'ip_address'		=> $data['ip_address'],
+			'photo'				=> ($data['photo']) ? $data['photo'] : 'assets/images/users/1.jpg',
+			'fullname'			=> $data['fullname'],
+			'level'				=> $data['role_name']
 		);
 
 		$this->session->set_userdata($sess_data);

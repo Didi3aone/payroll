@@ -53,11 +53,6 @@ $route['default_controller'] = 'dashboard/dashboard';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
  
+// $route['Auth'] = "auth/auth";
 //admin
 $route['admin'] = "dashboard/dashboard";
-$route['([a-zA-Z_-]+)/([a-zA-Z_-]+)/([a-zA-Z_-]+)/([a-zA-Z_-]+)'] = '$1/$2/$3/$4';
-$route['([a-zA-Z_-]+)/([a-zA-Z_-]+)/([a-zA-Z_-]+)/(:any)'] = '$1/$2/$3/$4';
-$route['([a-zA-Z_-]+)/([a-zA-Z_-]+)/([a-zA-Z_-]+)'] = '$1/$2/$3';
-$route['([a-zA-Z_-]+)/(:any)/(:any)'] = '$1/$1/$2/$3';
-$route['([a-zA-Z_-]+)/(:any)'] = '$1/$1/$2';
-$route['([a-zA-Z_-]+)'] = '$1/$1/index';

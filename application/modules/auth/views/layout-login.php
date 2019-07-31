@@ -5,7 +5,7 @@
 	<div class="login-register" style="background-image:url(assets/images/background/login-register.jpg);">        
 		<div class="login-box card">
 		<div class="card-body">
-			<form class="form-horizontal form-material" method="POST" id="loginform" action="<?php echo site_url('auth/proses_login'); ?>" enctype="multipart/form-data">
+			<form class="form-horizontal form-material" method="POST" id="loginform" action="<?php echo site_url('auth/proses_login'); ?>"  enctype="multipart/form-data">
 				<h3 class="box-title m-b-20">Sign In</h3>
 				<div class="form-group ">
 					<div class="col-xs-12">
@@ -20,8 +20,6 @@
 				<div class="form-group">
 					<div class="col-md-12">
 						<div class="checkbox checkbox-primary pull-left p-t-0">
-							<!-- <input id="checkbox-signup" type="checkbox"> -->
-							<!-- <label for="checkbox-signup"> Remember me </label> -->
 						</div> <a href="javascript:void(0)" id="to-recover" class="text-dark pull-right"><i class="fa fa-lock m-r-5"></i> Forgot pwd?</a> 
 					</div>
 				</div>

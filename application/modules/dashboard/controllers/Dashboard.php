@@ -20,7 +20,7 @@ class Dashboard extends MY_Controller {
 
     /**
 	 * function index 
-	 * @return void 
+	 * @return void qw
 	 */
     public function index()
     {
@@ -35,8 +35,10 @@ class Dashboard extends MY_Controller {
         $data = array();
 
         //footer
+        // disini cara pemanggilan file javascriptnya
+        // posisi file ada di assets/js/pages/nama_file.js
         $footer = array(
-            'plugin_js' => ASSETS_BACKEND_JS.'pages/dashboard.js'
+            // 'plugin_js' => ASSETS_BACKEND_JS.'pages/dashboard.js'
         );
     
       

@@ -17,7 +17,7 @@
     <link href="<?php echo base_url(). ASSETS_CSS; ?>style.css" rel="stylesheet">
     <!-- You can change the theme colors from here -->
     <link href="<?php echo base_url(). ASSETS_CSS; ?>colors/green-dark.css" id="theme" rel="stylesheet">
-    <link href="<?php echo base_url(). ASSETS_PLUGINS; ?>sweetalert/sweetalert.min.js" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url(). ASSETS_PLUGINS; ?>sweetalert/sweetalert.css">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>

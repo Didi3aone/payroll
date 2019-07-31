@@ -81,4 +81,61 @@ class MY_Controller extends MX_Controller {
 			"datas" 	=> $data
 		));
     }
+
+    /**
+     * [upload_file]
+     * @author didi <[diditriawan13@gmail.com]>
+     * @param   string $[key] [<post off name>]
+     *          string $file_name [<file name>] 
+     *          bool $multiple [<true or false>] 
+     *          mix  $multipleupload_path [<path position>] 
+     *          int  $id 
+     * @return [array] 
+     */
+    protected function upload_file ($key, $file_name, $multiple = false, $upload_path, $id) {
+        //initials 
+        $message['is_error'] = true;
+        $message['error_msg'] = "";
+        $message['redirect_to'] = "";
+
+        //load the uploader library.
+        $this->load->library('Uploader');
+        
+        //config upload path
+        //size 
+        $config = array(
+            "allowed_types"         =>  FILE_TYPE_UPLOAD,
+            "file_ext_tolower"      =>  true,
+            "overwrite"             =>  false,
+            "max_size"              =>  MAX_UPLOAD_FILE_SIZE_IN_KB,
+            "upload_path"           =>  $upload_path,
+        );
+
+        // check if not empty filename
+        // then overwrite filename
+        if (!empty($file_name)) {
+            $config['filename_overwrite'] = $file_name;
+        }
+
+        //try to upload the image.
+        $upload_result = $this->uploader->upload_files($key, $multiple, $config);
+
+        if ($upload_result['is_error']) {
+            if ($upload_result['is_error']) {
+                if (($id == "" && $upload_result['result'][0]['error_code'] == 0) || $upload_result['result'][0]['error_code'] != 0) {
+                    //file upload error of something.
+                    //show the error.
+                    $message['error_msg'] = $upload_result['result'][0]['error_msg'];
+
+                    //encoding and returning.
+                    $this->output->set_content_type('application/json');
+                    echo json_encode($message);
+                    exit;
+                }
+
+            }
+        }
+
+        return $upload_result['result'];
+    }
 }

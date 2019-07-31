@@ -249,6 +249,22 @@ if (!function_exists('sql_injection')) {
 	}
 }
 
-
-
+if(!function_exists('options')) {
+	function options($src, $id, $ref_val, $text_field)
+	{
+		$options = '';
+		foreach ($src as $row) {
+			$opt_value	= $row->$id;
+			$text_value	= $row->$text_field;
+			$data_id 	= $row->id; 			
+			if ($row->$id == $ref_val) {
+				$options .= '<option data-id="'.$data_id.'" value="'.$opt_value.'" selected>'.$text_value.'</option>';
+			}
+			else {
+				$options .= '<option data-id="'.$data_id.'" value="'.$opt_value.'">'.$text_value.'</option>';
+			}
+		}
+		return $options;
+	}
+}
 ?>
