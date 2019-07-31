@@ -138,9 +138,9 @@ class User extends MY_Controller {
         
         //passing parameter ke view
         $data = array(
-            'user' => $data_user,
-            'title_form' => 'Form Edit User',
-            'url_back'   => site_url('user')
+            'user'          => $data_user,
+            'title_form'    => 'Form Edit User',
+            'url_back'      => site_url('user')
         );
 
         //footer
@@ -390,90 +390,6 @@ class User extends MY_Controller {
             $message['error_msg'] = "Invalid ID.";
         }
 
-        $this->output->set_content_type('application/json')->set_output(json_encode(
-            $message
-        ));
-    }
-
-    /**
-	 * function get_role
-     * @author didi
-	 * @return void 
-	 */
-    public function get_role()
-    {   
-        //initials
-        $message['is_error']    = true;
-        $message['error_msg']   = "";
-        $message['datas']       = "";
-
-        $post_data  = json_decode(file_get_contents('php://input'),true);
-         
-        //get user
-        $get_user = $this->Global_model->set_model('tbl_users_role','tur','id')->mode(array(
-            'type' => GET_ALL_DATA,
-            'conditions' => array(
-                'is_active' => ACTIVE
-            )
-        ));
-
-        // print_r($get_user);       
-        //check if not empty set json output
-        if( !empty( $get_user) ) {
-            $message['is_error']    = false;
-            $message['success_msg'] = "Success get data";
-            $message['datas']       = $get_user;
-        } else {
-            $message['is_error']    = true;
-            $message['error_msg']   = "Database operation failed.";
-            $message['datas']       = 0;
-        }
-     
-        $this->output->set_content_type('application/json')->set_output(json_encode(
-            $message
-        ));
-    }
-
-     /**
-	 * function get_useradmin_hash_id
-     * @author : didi
-	 * @return void 
-	 */
-    public function get_useradmin_hash_id()
-    {   
-        //initials
-        $message['is_error']    = true;
-        $message['error_msg']   = "";
-        $message['datas']       = "";
-
-        //get parameter hash_id
-        $post_data  = json_decode(file_get_contents('php://input'),true);
-        // print_r($post_data);
-        //get router
-        $get_router = $this->Global_model->set_model('tbl_users','tu','id')->mode(array(
-            'type' => SINGLE_ROW,
-            'select' => 'tr.name as role, tr.id as role_id, tu.*,',
-            'joined' => array(
-                'tbl_users_role tr' => array(
-                    'tr.id' => 'tu.role_id'
-                )
-            ),
-            'conditions' => array(
-                'tu.hash_id' => $post_data['hash_id']
-            )
-        ));
-
-        //check if not empty set json output
-        if( !empty( $get_router) ) {
-            $message['is_error']    = false;
-            $message['success_msg'] = "Success get data";
-            $message['datas']       = $get_router;
-        } else {
-            $message['is_error']    = true;
-            $message['error_msg']   = "Invalid Parameter ID.";
-            $message['datas']       = 0;
-        }
-     
         $this->output->set_content_type('application/json')->set_output(json_encode(
             $message
         ));
