@@ -5,3 +5,16 @@
 .state-success {
     color: #18c656
 }
+
+.form-control {
+    color: #dce2e9;
+    min-height: 38px;
+    display: initial;
+}
+
+.form-control:focus {
+    color: #edf0f1;
+    /*background-color: #fff;*/
+    border-color: #80bdff;
+    outline: 0;
+}
